@@ -9,6 +9,17 @@
          <include name="config/*.xml"/>
          <include name="twinlife*.properties"/>
      </install>
+     <install mode='copy' dir="bin">
+       <fileset dir="scripts">
+         <include name="twindev"/>
+         <include name="install-twindev.sh"/>
+       </fileset>
+     </install>
+     <install mode='copy'>
+       <fileset dir="scripts">
+         <include name="twindev.service"/>
+       </fileset>
+     </install>
      <install mode='exec'>
        <command>chmod +x #{dst}</command>
        <include name="bin/*.sh"/>
@@ -111,9 +122,6 @@
        <command output="${dst}">jpegtran -copy none -optimize -perfect #{src}</command>
        <fileset dir="web">
          <include name="**/*.jpg"/>
-       </fileset>
-       <fileset dir="samples/web">
-          <include name="**/*.jpg"/>
        </fileset>
      </install>
   </dist>

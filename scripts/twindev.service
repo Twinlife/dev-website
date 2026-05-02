@@ -1,0 +1,15 @@
+[Unit]
+Description=Twinlife Dev service
+Requires=network.target remote-fs.target
+After=network.target remote-fs.target
+
+[Service]
+Type=simple
+User=twindev
+EnvironmentFile=/etc/default/twindev
+ExecStart=/opt/twindev/bin/twindev start --upload /opt/data/upload
+SuccessExitStatus=143
+SyslogIdentifier=twindev
+
+[Install]
+WantedBy=multi-user.target
