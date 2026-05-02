@@ -1,0 +1,32 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:w="http://code.google.com/p/ada-asf/widget"
+        xmlns:c="http://java.sun.com/jstl/core"
+	    xmlns:u="http://code.google.com/p/ada-asf/util"
+        xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="#{blogMsg.blog_page_title}"/>
+    <ui:param name="pageStyle" value="page-news"/>
+
+    <ui:define name="pageHeader">
+      <meta name="author" content="Stephane Carrez"/>
+      <meta name="description" content="Explore VACS.fr’s technical blog for in-depth articles on secure development and performance mostly in Ada and Java."/>
+      <link rel="canonical" href="#{initParam['app_url_base']}/index.html"/>
+    </ui:define>
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewParam id='page' value='#{postList.page}' required="false"/>
+            <f:viewAction action="#{postList.load}"/>
+        </f:metadata>
+      <div id='awa-content' class='awa-columns'>
+          <div class='awa-grid-9'>
+              <ui:include src="blogs/lists/post-list.xhtml">
+                  <ui:param name="pageUrl" value="blogs/view.html"/>
+              </ui:include>
+          </div>
+      </div>
+    </ui:define>
+</ui:composition>
+

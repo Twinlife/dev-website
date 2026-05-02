@@ -1,0 +1,37 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="#{wikiView.title}" />
+    <ui:param name="pageStyle" value="page-technology" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewParam id="technology" from="#{contextPath}/technology/" value="#{wikiView.page_prefix}"/>
+            <f:viewAction action="#{wikiView.load}" />
+        </f:metadata>
+      <h:panelGroup rendered="#{user.isLogged}">
+        <ui:include src="views/wiki-nav.xhtml">
+          <ui:param name="wikiSpaceId" value="#{wikiView.wiki_id}"/>
+          <ui:param name="page_link" value="/grid"/>
+        </ui:include>
+      </h:panelGroup>
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="Technology used by our applications"/>
+        </ui:include>
+        <div class='col-sm-12'>
+          <section>
+            <ui:include src="/WEB-INF/wiki-title.xhtml">
+              <ui:param name="title" value="#{wikiView.title}"/>
+              <ui:param name="pageName" value="#{wikiView.name}"/>
+            </ui:include>
+            <div class="wiki-text">
+                <awa:wiki styleClass='wiki-text' value="#{wikiView.content}" toc="true"
+                    links="#{wikiView.links}" plugins="#{wikiView.plugins}"
+                    format="#{wikiView.format}" />
+            </div>
+          </section>
+        </div>
+    </ui:define>
+</ui:composition>

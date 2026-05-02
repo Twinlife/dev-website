@@ -1,0 +1,114 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="Security" />
+    <ui:param name="pageStyle" value="page-security" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewAction action="#{wikiPrivacy.load}" />
+        </f:metadata>
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="Security of our applications"/>
+        </ui:include>
+        <div class='col-sm-12'>
+
+            <section>
+                <h2>End-to-End Encryption </h2>
+                <div class="wiki-text">
+
+                    Overview of how all communications (messages, calls) are encrypted.
+                    Use of WebRTC, SRTP, and DTLS for real-time media.
+                    Emphasis on no server access to content.
+                </div>
+            </section>
+
+            <section>
+                <h2>Twincodes: Secure Relationships</h2>
+                <div class="wiki-text">
+
+                    How twincodes establish and authenticate relationships.
+                    ECDSA signatures for data integrity and origin authentication.
+                    Protection against server compromise or forgery.
+
+                    SDP encrypted and signaling server cannot inspect WebRTC signaling.
+                </div>
+            </section>
+
+
+            <section>
+                <h2>Compliance with Standards</h2>
+                <div class="wiki-text">
+
+                    IETF standards: UDP, RTP, ICE, STUN, TURN, SDP, SRTP, DTLS.
+                    Use of ChaCha20-Poly1305 and AES-GCM cipher suites.
+                    Interoperability with WebRTC ecosystem.
+                </div>
+            </section>
+
+            <section>
+                <h2>Secure Account Creation</h2>
+                <div class="wiki-text">
+                    No personal information required (no phone/email).
+                    UUID-based accounts and cryptographically secure authentication.
+                    Salted challenge-response mechanism for passwords.
+                </div>
+            </section>
+
+            <section>
+                <h2>Device Security</h2>
+                <div class="wiki-text">
+                    Secure key/value store for credentials (iOS Keychain, Android Keystore).
+                    Encrypted local database (SQLCipher with AES-256).
+                    Protection against physical device access.
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Server and Transport Security</h2>
+                <div class="wiki-text">
+
+                    TLS 1.2/1.3 for all device-server communications.
+                    Certificate pinning to prevent MITM attacks.
+                    Secure WebSocket access and firewall-protected servers.
+                </div>
+
+            </section>
+
+            <section>
+                <h2>Push Notification Security</h2>
+                <div class="wiki-text">
+
+
+                    Encrypted push tokens to prevent spoofing.
+                    Use of Apple/Google Push services with AES-256-CBC encryption.
+                    Authentication of notification content.
+                </div>
+            </section>
+
+
+            <section>
+
+                <h2>Implementation</h2>
+                <div class="wiki-text">
+
+                <h3>Secure Storage and Serialization</h3>
+                    SQLCipher for encrypted local databases.
+                    Avro for secure serialization of compound objects.
+                    Platform-specific secure storage (iOS Keychain, Android Keystore).
+
+                    <h3>Cryptographic Foundations</h3>
+
+                    ECDSA for signatures and key exchange.
+                    AEAD (AES-256-GCM) for authenticated encryption.
+                    PBKDF2 and HMAC for key derivation and integrity.
+                </div>
+            </section>
+
+
+        </div>
+    </ui:define>
+</ui:composition>

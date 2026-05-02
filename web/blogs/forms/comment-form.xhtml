@@ -1,0 +1,50 @@
+<!-- Form to create a blog
+  -  Copyright (C) 2011, 2017, 2018, 2019, 2020 Stephane Carrez
+  -  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+  -  SPDX-License-Identifier: Apache-2.0
+  -->
+<div xmlns:c="http://java.sun.com/jstl/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:ajax="http://code.google.com/p/ada-asf/ajax" xmlns:util="http://code.google.com/p/ada-asf/util"
+  xmlns:f="http://java.sun.com/jsf/core" xmlns:w="http://code.google.com/p/ada-asf/widget"
+  xmlns:h="http://java.sun.com/jsf/html">
+  <h3>#{blogMsg.blog_add_comment}</h3>
+  <div class='awa-comment-form awa-form'>
+    <h:form id='post-comment'>
+      <h:inputHidden id='post-id' value='#{post.id}' />
+      <h:inputHidden id='entity-id' value='#{postNewComment.entity_id}' required='false' />
+      <h:inputHidden id='comment-id' value='#{postNewComment.id}' required='false' />
+      <div class="awa-comment">
+          <h:messages styleClass='awa-error' />
+        <div class='comment-form'>
+      <dl class='awa-required'>
+        <dt><label>Enter a valid Skred or Twinme mini-code</label>
+        (<a href="#{contextPath}/technology/get-a-mini-code">How to get a Mini-code ?</a>)</dt>
+        <dd>
+          <h:inputText styleClass="tw-code" id="c1" required="false" value="#{postNewComment.c1}" />
+          <h:inputText styleClass="tw-code" id="c2" required="false" value="#{postNewComment.c2}" />
+          <h:inputText styleClass="tw-code" id="c3" required="false" value="#{postNewComment.c3}" />
+          <h:inputText styleClass="tw-code" id="c4" required="false" value="#{postNewComment.c4}" />
+          <h:inputText styleClass="tw-code" id="c5" required="false" value="#{postNewComment.c5}" />
+          <h:inputText styleClass="tw-code" id="c6" required="false" value="#{postNewComment.c6}" />
+        </dd>
+        </dl>
+          <dt>Comment</dt>
+          <dl class="awa-required#{util:hasMessage('text') ? ' awa-error' : ''}">
+            <dd>
+              <h:inputTextarea id='text' rows='10' required='false' value='#{postNewComment.message}' />
+            </dd>
+          </dl>
+          <ul class='awa-buttons'>
+            <li>
+              <h:commandButton id='create' value='#{commentMsg.comment_add_button}'
+                styleClass="ui-button ui-state-default ui-corner-all" action="#{postNewComment.create}" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </h:form>
+  </div>
+  <util:script>
+    var comments = new Comments('post-comment');
+  </util:script>
+</div>

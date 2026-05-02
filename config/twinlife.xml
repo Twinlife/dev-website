@@ -1,0 +1,299 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<module version="1.0">
+    <application>
+        <locale-config>
+               <default-locale>en</default-locale>
+               <supported-locale>en</supported-locale>
+        </locale-config>
+        <message-bundle var='twinlifeMsg'>twinlife</message-bundle>
+    </application>
+
+  <!--  When a user is created, create the blog object.  -->
+  <on-event name="user-create" queue="job-queue">
+    <action>#{blog.create_default}</action>
+    <property name="name">Blog</property>
+  </on-event>
+
+  <!--  When a user is created, send him a welcome message.  -->
+  <on-event name="user-create">
+    <action>#{userMail.send}</action>
+    <property name="template">/mail/welcome-message.xhtml</property>
+  </on-event>
+
+  <!--  When a user is created and has accepted the invitation, add a permission to the wiki.  -->
+  <on-event name="user-create">
+    <action>#{permission.create}</action>
+    <property name="entity_type">awa_wiki_space</property>
+    <property name="entity_id">1</property>
+    <property name="workspace_id">1</property>
+    <property name="permission">wiki-page-create,wiki-page-update,wiki-page-delete,wiki-page-view,wiki-space-delete,wiki-space-update</property>
+  </on-event>
+
+  <!--  When a user is created and has accepted the invitation, add a permission to the blog.  -->
+  <on-event name="user-create">
+    <action>#{permission.create}</action>
+    <property name="entity_type">awa_blog</property>
+    <property name="entity_id">1</property>
+    <property name="workspace_id">1</property>
+    <property name="permission">blog-create-post,blog-delete-post,blog-add-comment,blog-publish-comment,blog-delete-comment,blog-update-post</property>
+  </on-event>
+
+  <!--  When a user is created and has accepted the invitation, add a permission for the storage space.  -->
+  <on-event name="user-create">
+    <action>#{permission.create}</action>
+    <property name="entity_type">awa_workspace</property>
+    <property name="entity_id">1</property>
+    <property name="workspace_id">1</property>
+    <property name="permission">storage-create,storage-delete,folder-create</property>
+  </on-event>
+
+  <!--  When a user is created and has accepted the invitation, give him the right to manage other users.  -->
+  <on-event name="user-create">
+    <action>#{permission.create}</action>
+    <property name="entity_type">awa_workspace</property>
+    <property name="entity_id">1</property>
+    <property name="workspace_id">1</property>
+    <property name="permission">workspace-invite-user,workspace-delete-user</property>
+  </on-event>
+
+  <!--  When a blog post is published, send an email to the Ada France mailing list -->
+  <on-event name="blog-post-publish">
+    <action>#{userMail.send}</action>
+    <property name="template">/mail/blog-post-publish-email.html</property>
+  </on-event>
+
+  <!--  When a user is post a comment send him a welcome message.  -->
+  <on-event name="blog-comment-create">
+     <action>#{userMail.send}</action>
+     <property name="template">/mail/notify-comment-message.html</property>
+     <property name="request.id">#{event.id}</property>
+  </on-event>
+
+  <managed-bean>
+    <description>Bean used to create a new permission for the current user.</description>
+    <managed-bean-name>permission</managed-bean-name>
+    <managed-bean-class>AWA.Permissions.Beans.Permission_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+  </managed-bean>
+
+  <managed-bean>
+    <description>A wiki block displayed on all public pages.</description>
+    <managed-bean-name>wikiPrivacy</managed-bean-name>
+    <managed-bean-class>AWA.Wikis.Beans.Wiki_View_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>wiki_id</property-name>
+      <property-class>Integer</property-class>
+      <value>1</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name</property-name>
+      <property-class>String</property-class>
+      <value>Security:Privacy</value>
+    </managed-property>
+    <managed-property>
+      <property-name>image_prefix</property-name>
+      <property-class>String</property-class>
+      <value>#{contextPath}/images/</value>
+    </managed-property>
+    <managed-property>
+      <property-name>page_prefix</property-name>
+      <property-class>String</property-class>
+      <value>#{contextPath}/wikis/view/</value>
+    </managed-property>
+    <managed-property>
+      <property-name>page_prefix</property-name>
+      <property-class>String</property-class>
+      <value>#{contextPath}/wikis/view/</value>
+    </managed-property>
+  </managed-bean>
+
+  <managed-bean>
+    <description>
+       The bean to allow a user to post a new comment.  This is a specific bean because
+       the permission to create a new post is different from other permissions.  If the permission
+       is granted, the comment will be created and put in the COMMENT_WAITING state.
+       An email will be sent to the post author for approval.
+    </description>
+    <managed-bean-name>postNewComment</managed-bean-name>
+    <managed-bean-class>Twinlife.Beans.Comment_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>entity_type</property-name>
+      <property-class>String</property-class>
+      <value>awa_post</value>
+    </managed-property>
+    <managed-property>
+      <property-name>permission</property-name>
+      <property-class>String</property-class>
+      <value>blog-add-comment</value>
+    </managed-property>
+    <managed-property>
+      <property-name>status</property-name>
+      <property-class>String</property-class>
+      <value>COMMENT_WAITING</value>
+    </managed-property>
+    <managed-property>
+      <property-name>format</property-name>
+      <property-class>String</property-class>
+      <value>FORMAT_TEXT</value>
+    </managed-property>
+  </managed-bean>
+
+  <navigation-rule>
+    <from-view-id>/blogs/forms/comment-form.xhtml</from-view-id>
+    <navigation-case>
+      <from-outcome>success</from-outcome>
+      <to-view-id>/blogs/forms/comment-add-form-response.xhtml</to-view-id>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>not-found</from-outcome>
+      <to-view-id>/blogs/forms/comment-add-form-response.xhtml</to-view-id>
+      <status>404</status>
+    </navigation-case>
+    <navigation-case>
+      <from-outcome>awa.users.services.not_found</from-outcome>
+      <to-view-id>/blogs/forms/comment-add-form-response.xhtml</to-view-id>
+      <status>401</status>
+    </navigation-case>
+  </navigation-rule>
+
+    <servlet-mapping>
+      <servlet-name>measures</servlet-name>
+      <url-pattern>/statistics.xml</url-pattern>
+    </servlet-mapping>
+
+  <filter-mapping>
+    <filter-name>service</filter-name>
+    <url-pattern>/index.html</url-pattern>
+    <url-pattern>/technology.html</url-pattern>
+    <url-pattern>/security.html</url-pattern>
+    <url-pattern>/privacy.html</url-pattern>
+    <url-pattern>/developers.html</url-pattern>
+    <url-pattern>/about.html</url-pattern>
+    <url-pattern>/technology/#{wikiView.name}</url-pattern>
+  </filter-mapping>
+
+  <filter-mapping>
+    <filter-name>no-cache</filter-name>
+    <url-pattern>/wikis/*</url-pattern>
+    <url-pattern>/blogs/*</url-pattern>
+    <url-pattern>/microblog/*</url-pattern>
+    <url-pattern>/reviews/*</url-pattern>
+    <url-pattern>/workspaces/*</url-pattern>
+    <url-pattern>/questions/*</url-pattern>
+    <url-pattern>/storages/*</url-pattern>
+  </filter-mapping>
+
+  <servlet-mapping>
+    <servlet-name>files</servlet-name>
+    <url-pattern>*.webp</url-pattern>
+  </servlet-mapping>
+
+  <managed-bean>
+    <description>The wiki page with all its information to display it.</description>
+    <managed-bean-name>wikiView</managed-bean-name>
+    <managed-bean-class>AWA.Wikis.Beans.Wiki_View_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>wiki_id</property-name>
+      <property-class>Integer</property-class>
+      <value>1</value>
+    </managed-property>
+    <managed-property>
+      <property-name>image_prefix</property-name>
+      <property-class>String</property-class>
+      <value>#{contextPath}/wikis/images/1/</value>
+    </managed-property>
+    <managed-property>
+      <property-name>page_prefix</property-name>
+      <property-class>String</property-class>
+      <value>#{contextPath}/wikis/view/</value>
+    </managed-property>
+  </managed-bean>
+
+  <managed-bean>
+    <description>Twinme version</description>
+    <managed-bean-name>twinmeVersion</managed-bean-name>
+    <managed-bean-class>Twinlife.Versions.Version_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>uri</property-name>
+      <property-class>String</property-class>
+      <value>https://twin.me</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name_ios</property-name>
+      <property-class>String</property-class>
+      <value>twinme-ios.json</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name</property-name>
+      <property-class>String</property-class>
+      <value>twinme.json</value>
+    </managed-property>
+  </managed-bean>
+
+  <managed-bean>
+    <description>Twinme+ version</description>
+    <managed-bean-name>twinmeplusVersion</managed-bean-name>
+    <managed-bean-class>Twinlife.Versions.Version_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>uri</property-name>
+      <property-class>String</property-class>
+      <value>https://twin.me</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name_ios</property-name>
+      <property-class>String</property-class>
+      <value>twinme-plus-ios.json</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name</property-name>
+      <property-class>String</property-class>
+      <value>twinme-plus.json</value>
+    </managed-property>
+  </managed-bean>
+
+  <managed-bean>
+    <description>Skred version</description>
+    <managed-bean-name>skredVersion</managed-bean-name>
+    <managed-bean-class>Twinlife.Versions.Version_Bean</managed-bean-class>
+    <managed-bean-scope>request</managed-bean-scope>
+    <managed-property>
+      <property-name>uri</property-name>
+      <property-class>String</property-class>
+      <value>https://www.skred.app</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name_ios</property-name>
+      <property-class>String</property-class>
+      <value>skred-ios.json</value>
+    </managed-property>
+    <managed-property>
+      <property-name>name</property-name>
+      <property-class>String</property-class>
+      <value>skred.json</value>
+    </managed-property>
+  </managed-bean>
+
+  <!--  when a refresh version event is triggered.  -->
+  <on-event name="refresh-version" queue="job-queue">
+    <action>#{skredVersion.refresh}</action>
+  </on-event>
+
+  <on-event name="refresh-version" queue="job-queue">
+    <action>#{twinmeVersion.refresh}</action>
+  </on-event>
+
+  <on-event name="refresh-version" queue="job-queue">
+    <action>#{twinmeplusVersion.refresh}</action>
+  </on-event>
+
+  <url-mapping>
+    <pattern>/technology/#{wikiView.name}</pattern>
+    <view-id>/technology-view.html</view-id>
+  </url-mapping>
+
+</module>

@@ -1,0 +1,169 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="Security" />
+    <ui:param name="pageStyle" value="page-about" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewAction action="#{wikiPrivacy.load}" />
+        </f:metadata>
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="The team behind"/>
+        </ui:include>
+
+        <div class='col-sm-12'>
+            <section>
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/pierre.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Pierre Bellanger
+                </div>
+                <div class="profile-role">
+                    CEO
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/michel.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Michel Gien
+                </div>
+                <div class="profile-role">
+                    Founder &amp; Director
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/jerome.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Jerome Aguesse
+                </div>
+                <div class="profile-role">
+                    Director
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/stephane.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Stephane Carrez
+                </div>
+                <div class="profile-role">
+                    CTO
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/maxime.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Maxime Decaix
+                </div>
+                <div class="profile-role">
+                    Project manager &amp; support
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/fred.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Fred Tourrou
+                </div>
+                <div class="profile-role">
+                    Head of Design &amp; Creative director
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/fabrice.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Fabrice Trescartes
+                </div>
+                <div class="profile-role">
+                    iOS &amp; Android Senior Developer
+                </div>
+            </div>
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/romain.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Romain Kolb
+                </div>
+                <div class="profile-role">
+                    Senior Developer
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/patrice.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Patrice Damezin
+                </div>
+                <div class="profile-role">
+                    System administrator
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/florian.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Florian Znamiec
+                </div>
+                <div class="profile-role">
+                    System administrator
+                </div>
+            </div>
+
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/laurent.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Laurent Latil
+                </div>
+                <div class="profile-role">
+                    Senior Developer
+                </div>
+            </div>
+            </section>
+        </div>
+
+        <div class='col-sm-12'>
+
+            <h2>And our story would not have been possible without our valueable past contributors</h2>
+            <div class="col-sm-4 twinlife-profile">
+                <div class="profile-image">
+                    <img width="192" src="#{contextPath}/images/about/christian.jpg"/>
+                </div>
+                <div class="profile-name">
+                    Christian Jacquemot
+                </div>
+                <div class="profile-role">
+                    Founder &amp; CTO
+                </div>
+            </div>
+        </div>
+
+    </ui:define>
+</ui:composition>

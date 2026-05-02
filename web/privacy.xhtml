@@ -1,0 +1,55 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="Privacy" />
+    <ui:param name="pageStyle" value="page-privacy" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewAction action="#{wikiPrivacy.load}" />
+        </f:metadata>
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="Privacy of our applications"/>
+        </ui:include>
+        <div class='col-sm-12'>
+            <div class="tw-quote">
+                <blockquote cite="https://pierrebellanger.com/skred-pierre_bellanger/">
+                Our slogan could be: 'Don’t trust us.' If tomorrow a data-hungry actor
+                bought Skred, they could do nothing with it: no messages pass through us,
+                and we have no identifiers for our users other than their pseudonyms.
+                </blockquote>
+                <div class="tw-quote-author">Pierre Bellanger</div>
+            </div>
+            <section>
+                <h2>Privacy by Design</h2>
+<div class="wiki-text">
+    To use our applications, no email and no phone number are required.
+    Our twincode architecture allows to create secure relations without knowing
+    the personal information which are behind such relations.
+    When the application is installed on a device, a unique and secure
+    account is created for that device.  Profile, contact and group
+    relations are then represented by twincodes which are
+    16-byte random numbers.  Twincodes are then completed by a nickname
+    and an avatar that are defined only to help end users identify their relations.
+</div>
+            </section>
+
+            <section>
+                <h2>No centralized data storage</h2>
+                <div class="wiki-text">
+                    <p>
+Messages, audio calls, and video calls are exchanged through direct peer-to-peer communication.
+This means there is no central server storing your messages—your conversations remain private and under your control.
+                    </p>
+<p>
+To ensure seamless communication, both devices need to be online and connected.
+If one device is offline or unreachable, messages may be temporarily delayed until the connection is reestablished.
+</p>
+                </div>
+            </section>
+
+        </div>
+    </ui:define>
+</ui:composition>

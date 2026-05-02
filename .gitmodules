@@ -1,0 +1,3 @@
+[submodule "awa"]
+	path = awa
+	url = https://gitlab.com/stcarrez/ada-awa.git

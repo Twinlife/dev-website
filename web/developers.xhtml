@@ -1,0 +1,59 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="Developers" />
+    <ui:param name="pageStyle" value="page-developers" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <f:metadata>
+            <f:viewAction action="#{wikiPrivacy.load}" />
+        </f:metadata>
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="Developping our applications"/>
+        </ui:include>
+        <div class='col-sm-12'>
+
+            <section>
+                <h2>Android</h2>
+                <div class="wiki-text">
+                    Sources are available in GitHub repositories and you should use the following command
+                    to get the complete set:
+                    <pre>
+<code>git clone --recursive https://github.com/Twinlife/twinme-android.git
+</code></pre>
+                    The compilation requires to have the development tools for Android (gradle, SDKs, ...).
+                </div>
+            </section>
+
+            <section>
+                <h2>iOS</h2>
+                <div class="wiki-text">
+                    Sources are available in GitHub repositories and you should use the following command
+                    to get the complete set:
+                    <pre>
+<code>git clone --recursive https://github.com/Twinlife/twinme-ios.git
+</code></pre>
+                    The compilation requires to have Xcode 26.
+                </div>
+            </section>
+
+
+            <section>
+                <h2>WebRTC</h2>
+                <div class="wiki-text">
+                    Sources are available in GitHub repositories and you should use the following command
+                    to get them:
+                    <pre>
+<code>git clone --recursive https://github.com/Twinlife/webrtc.git
+</code></pre>
+                    The compilation requires to also fetch Google WebRTC sources
+                    at https://webrtc.googlesource.com/src
+                    .
+                </div>
+            </section>
+
+        </div>
+    </ui:define>
+</ui:composition>

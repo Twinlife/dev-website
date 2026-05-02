@@ -1,0 +1,110 @@
+<ui:composition template="/WEB-INF/layouts/anonymous.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
+    xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
+    xmlns:h="http://java.sun.com/jsf/html">
+    <ui:param name="title" value="Technology" />
+    <ui:param name="pageStyle" value="page-technology" />
+
+    <!-- Main page body -->
+    <ui:define name="pageBody">
+        <ui:include src="/WEB-INF/applications.xhtml">
+            <ui:param name="title" value="Technology used by our applications"/>
+        </ui:include>
+        <div class='col-sm-12'>
+            <section>
+                <h2>Our Twincode Technology</h2>
+                <div class="wiki-text">
+Our Twincode technology allows us to setup various kinds of relations
+without knowing private information about any party.
+Twincodes implement objects relationships along a client-server model. Twincodes are composed of the following 4 “facets”:
+<ul>
+  <li>
+    The twincode Factory generates the object identifiers, and defines its ownership and access rights properties;
+  </li>
+  <li>
+    The twincode Outbound is a proxy of the called object, given to a calling object;
+  </li>
+  <li>
+    The twincode Inbound defines the entry point to the called object;
+  </li>
+  <li>
+    The twincode Switch connects the twincode Outbound to the twincode Inbound.
+  </li>
+</ul>
+Twincode facets are defined by 4 unique identifiers. These identifiers are version 4 Unique User ID’s (UUID v48F8F10F1).
+Their relationships are represented on Figure twincodes “Click-to-Call” relationship model.
+
+<figure>
+    <img width="512" src="#{contextPath}/images/twincodes-technology.jpg"/>
+<figcaption>“Click-to-Call” relationship model</figcaption>
+</figure>
+
+                    The twincode relationship model is covered by EU Patent N°3 020 179 granted on 31 May 2017
+                    under the title “Distributed Programmable Connection Method to establish Peer-to-Peer Multimedia
+                     Interactions” (application date: 10 July 2014).
+
+                     <p>The twincode relationship model is used to represent:</p>
+                     <ul>
+                        <li><a href="#{contextPath}/technology/profiles">Profile and invitation</a></li>
+                        <li><a href="#{contextPath}/technology/contacts">Contact relation</a></li>
+                        <li><a href="#{contextPath}/technology/groups">Groups and group membership</a></li>
+                        <li><a href="#{contextPath}/technology/click-to-call">Click-to-call</a></li>
+                         <li><a href="#{contextPath}/technology/mini-code">Mini-Codes</a></li>
+                     </ul>
+                </div>
+            </section>
+            <section>
+                <h2>Peer-to-Peer communication</h2>
+                <div class="wiki-text">
+                    Our applications protect your privacy and freedom by sending messages and
+                    photos directly between devices, without storing any content on a server.
+
+                    When a device wants to connect to a peer, it generates an SDP (Session Description Protocol)
+                     message to initiate the WebRTC connection. The SDP message is sent to the signaling server
+                      along with the peer’s twincode to identify the target device. The server then attempts
+                       to wake up the peer device using Google or Apple push notification services. Once the peer
+                       device is awake, it connects to the signaling server and retrieves the SDP message.
+
+                     <figure>
+    <img width="512" src="#{contextPath}/images/webrtc-and-signaling.jpg"/>
+<figcaption>WebRTC direct communication and encrypted signaling</figcaption>
+</figure>
+                     <p>Peer-to-Peer communication are used for:</p>
+                     <ul>
+                        <li><a href="#{contextPath}/technology/messaging">Messaging</a></li>
+                        <li><a href="#{contextPath}/technology/video">Audio and Video calls</a></li>
+                        <li><a href="#{contextPath}/technology/device-migration">Device to device migration</a></li>
+                        <li><a href="#{contextPath}/technology/click-to-call">Click-to-call</a></li>
+                     </ul>
+                </div>
+            </section>
+            <section>
+                <h2>Signaling and Backend Infrastructure</h2>
+                <div class="wiki-text">
+A signaling server is used for the administration of twincodes and handle the WebRTC signaling
+between devices.  Our server implements the twincode objects relationships and when a device
+wants to establish a WebRTC direct connection, it forwards the WebRTC signaling messages
+to the devices. To protect the signaling setup, these signaling messages (known as SDP)
+are encrypted on each device with shared secrets which are changed regularly.
+                    Openfire (XMPP) for signaling and Jetty for WebSockets.
+                    PostgreSQL for operations data and Kafka for messaging.
+                    TimescaleDB/Grafana for monitoring and analytics.
+
+                     <figure>
+    <img width="512" src="#{contextPath}/images/twinlife-webrtc-signaling.jpg"/>
+<figcaption>Encrypted signaling</figcaption>
+</figure>
+                     <p>Peer-to-Peer communication are used for:</p>
+                     <ul>
+                        <li><a href="#{contextPath}/technology/messaging">Messaging</a></li>
+                        <li><a href="#{contextPath}/technology/video">Audio and Video calls</a></li>
+                        <li><a href="#{contextPath}/technology/device-migration">Device to device migration</a></li>
+                        <li><a href="#{contextPath}/technology/click-to-call">Click-to-call</a></li>
+                     </ul>
+</div>
+
+            </section>
+
+        </div>
+    </ui:define>
+</ui:composition>

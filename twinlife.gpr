@@ -1,0 +1,30 @@
+with "twinlife_config";
+
+aggregate project twinlife is
+
+   for Create_Missing_Dirs use "True";
+
+   Build_Dynamo : Twinlife_Config.Yes_No := external ("BUILD_DYNAMO", "yes");
+   Build_Akt    : Twinlife_Config.Yes_No := external ("BUILD_AKT", "yes");
+
+   for Project_Files use ("twinlife_server.gpr");
+
+   case Build_Dynamo is
+      when "yes" =>
+         for Project_Files use Project'Project_Files & ("awa/dynamo/dynamo_tool.gpr");
+
+      when others =>
+         null;
+
+   end case;
+
+   case Build_Akt is
+      when "yes" =>
+         for Project_Files use Project'Project_Files & ("awa/ada-keystore/akt/akt_nofuse.gpr");
+
+      when others =>
+         null;
+
+   end case;
+
+end twinlife;

@@ -1,0 +1,19 @@
+<!-- Header bar at top of the page layout
+  -  Copyright (C) 2011, 2012, 2018 Stephane Carrez
+  -  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+  -  SPDX-License-Identifier: Apache-2.0
+  -->
+<div class='twinlife-applications' xmlns:c="http://java.sun.com/jstl/core" xmlns:h="http://java.sun.com/jsf/html">
+    <div class="twinlife-version">
+        <h3>Skred #{skredVersion.version}</h3>
+    </div>
+    <div class="twinlife-version">
+        <h3>Twinme #{twinmeVersion.version}</h3>
+    </div>
+    <div class="twinlife-version">
+        <h3>Twinme+ #{twinmeplusVersion.version}</h3>
+        <h:list layout="unorderedList" value="#{skredVersion.changes}" var="msg">
+            #{msg}
+        </h:list>
+    </div>
+</div>

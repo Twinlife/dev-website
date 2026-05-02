@@ -1,0 +1,45 @@
+name = "twinlife"
+version = "0.5.0"
+description = "twinlife"
+authors = ["Stephane.Carrez@twin.life"]
+project-files = ["twinlife.gpr"]
+licenses = "Apache-2.0"
+
+[[depends-on]]
+utilada = "^2.7.0"
+utilada_curl = "^2.7.0"
+ado = "^2.4.0"
+ado_sqlite = "^2.4.0"
+ado_mysql = "^2.4.0"
+ado_postgresql = " ^2.4.0"
+ado_all = "^2.4.0"
+awa = "^2.5.0"
+servletada_aws = "^1.7.0"
+
+[gpr-externals]
+TWINLIFE_BUILD = ["distrib", "debug", "optimize", "profile", "coverage"]
+TWINLIFE_LIBRARY_TYPE = ["relocatable", "static", "static-pic"]
+
+[configuration]
+disabled = true
+
+[[pins]]
+utilada = { path = 'awa/ada-util' }
+utilada_xml = { path = 'awa/ada-util/xml' }
+utilada_aws = { path = 'awa/ada-util/aws' }
+utilada_unit = { path = 'awa/ada-util/unit' }
+elada = { path = 'awa/ada-el' }
+serverfaces = { path = 'awa/ada-asf' }
+ado = { path = 'awa/ada-ado' }
+ado_all = { path = 'awa/ada-ado/drivers' }
+ado_mysql = { path = 'awa/ada-ado/mysql' }
+ado_postgresql = { path = 'awa/ada-ado/postgresql' }
+security = { path = 'awa/ada-security' }
+keystoreada = { path = 'awa/ada-keystore' }
+awa = { path = 'awa' }
+openapi = { path = 'awa/openapi-ada' }
+openapi_server = { path = 'awa/openapi-ada/server' }
+servletada_aws = { path = 'awa/ada-servlet/aws' }
+dynamo = { path = 'awa/dynamo' }
+wikiada = { path = 'awa/ada-wiki' }
+akt = { path = 'awa/ada-keystore/akt' }

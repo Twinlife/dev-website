@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+   <dist>
+     <install mode='copy'>
+         <include name="bin/*-server"/>
+         <include name="bin/*.sh"/>
+         <include name="bin/twindev"/>
+         <include name="bin/akt"/>
+         <include name="config/*.xml"/>
+         <include name="twinlife*.properties"/>
+     </install>
+     <install mode='exec'>
+       <command>chmod +x #{dst}</command>
+       <include name="bin/*.sh"/>
+       <include name="bin/*-server"/>
+       <include name="bin/akt"/>
+       <include name="bin/twindev"/>
+     </install>
+     <install mode='libs' dir='lib'>
+       <library>libmysqlclient*</library>
+       <library>libmariadbclient*</library>
+       <library>libsqlite*</library>
+       <library>libgnat*</library>
+       <library>libgnarl*</library>
+       <library>libbfd*</library>
+       <library>libssl*</library>
+       <library>libcrypto*</library>
+       <library>libada_lzma*</library>
+       <include name="bin/*-server"/>
+     </install>
+     <install mode='copy' dir="bundles">
+       <fileset dir="bundles">
+         <include name="**/*.properties"/>
+       </fileset>
+     </install>
+     <install mode='copy' dir='licenses'>
+         <include name="LICENSE"/>
+         <include name="LICENSE.*"/>
+         <include name="COPYING"/>
+         <include name="COPYING3"/>
+     </install>
+     <install mode='concat' dir='licenses'>
+       <include name="NOTICE.txt"/>
+     </install>
+     <install mode='copy' dir='db'>
+       <fileset dir="db">
+         <include name="*.xml"/>
+         <include name="**/*.sql"/>
+       </fileset>
+     </install>
+     <install mode='copy' dir='web'>
+       <fileset dir="web">
+          <include name="**/*.xhtml"/>
+          <include name="**/*.html"/> 
+          <include name="**/*.xml"/> 
+          <include name="WEB-INF/**"/>
+          <include name="**/*.gif"/>
+          <include name="**/*.ico"/>
+          <include name="**/*.ttf"/>
+          <include name="**/*.woff2"/>
+          <include name="**/*.svg"/>
+          <exclude name="preview/**"/>
+          <exclude name="WEB-INF/layouts/**"/>
+       </fileset>
+     </install>
+     <install mode='exec' dir='web'>
+       <command slow='true'>esbuild --log-level=warning #{src} --minify --outfile=#{dst}</command>
+       <fileset dir="web">
+         <include name="**/*.js"/>
+         <exclude name="js/markedit/jquery.markedit.js"/>
+         <exclude name="js/easymde/easymde.min.js"/>
+       </fileset>
+     </install>
+     <install mode='copy' dir='web'>
+       <fileset dir="web">
+         <include name="js/easymde/easymde.min.js"/>
+         <include name="js/markedit/jquery.markedit.js"/>
+       </fileset>
+     </install>
+     <install mode='exec' dir='web'>
+       <command>esbuild --log-level=warning #{src} --minify --outfile=#{dst}</command>
+       <fileset dir="web">
+         <include name="**/*.css"/>
+       </fileset>
+     </install>
+     <install mode='merge' dir='web' log='info'>
+       <property name="contextPath"></property>
+       <property name="jquery.path">/js/jquery-4.0.0.js</property>
+       <property name="jquery.uiCssPath">/css/jquery-ui-1.14.2/</property>
+       <property name="jquery.chosenCssPath">/css/jquery-chosen-3.0.0/chosen.css</property>
+       <property name="jquery.uiPath">/js/jquery-ui-1.14.2/</property>
+       <replace>
+         <from>url("images/</from>
+         <to>url("jquery-ui-1.14.2/images/</to>
+       </replace>
+       <replace>
+         <from>url(../../images/</from>
+         <to>url(../images/</to>
+       </replace>
+       <fileset dir="web">
+          <include name="WEB-INF/layouts/*.xhtml"/>
+       </fileset>
+     </install>
+     <install mode='exec' dir='web'>
+       <command>pngcrush -s #{src} #{dst}</command>
+       <fileset dir="web">
+         <include name="**/*.png"/>
+       </fileset>
+     </install>
+     <install mode='copy-exec' dir='web' >
+       <command output="${dst}">jpegtran -copy none -optimize -perfect #{src}</command>
+       <fileset dir="web">
+         <include name="**/*.jpg"/>
+       </fileset>
+       <fileset dir="samples/web">
+          <include name="**/*.jpg"/>
+       </fileset>
+     </install>
+  </dist>
+</package>

@@ -1,0 +1,227 @@
+openapi: 3.0.0
+info:
+  title: Twinlife Twincodes API
+  description: API for retrieving information about twincodes
+  version: 1.0.0
+servers:
+  - url: https://meet.mytwinlife.net
+    description: Production server
+paths:
+  /rest/api/twincodes/{twincodeId}:
+    get:
+      summary: Get twincode information
+      description: Retrieve details about a specific twincode
+      operationId: Get_Twincode
+      parameters:
+        - name: twincodeId
+          in: path
+          required: true
+          description: The unique identifier of the twincode
+          schema:
+            type: string
+            example: "HG_jqT2eSLCZpFEcezdQ-g"
+      responses:
+        '200':
+          description: Successful response with twincode information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Twincode'
+  /rest/api/minicodes/{miniCode}:
+    get:
+      summary: Get twincode information from a miniCode
+      description: Retrieve details about a specific twincode
+      operationId: Get_Mini_Code
+      parameters:
+        - name: miniCode
+          in: path
+          required: true
+          description: The mini-code identifier that represents the twincode
+          schema:
+            type: string
+            example: "BG34GH"
+      responses:
+        '200':
+          description: Successful response with twincode information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Twincode'
+  /download/{name}:
+    get:
+      summary: Get Twinme application information
+      description: Retrieve the latest Twinme application details including version, size, and changelog
+      operationId: Get_Version
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: The name of the version file
+          schema:
+            type: string
+            example: "twinme.version"
+      responses:
+        '200':
+          description: Successful response with Twinme application information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TwinmeInfo'
+components:
+  schemas:
+    DateInfo:
+      type: object
+      properties:
+        year:
+          type: integer
+        month:
+          type: integer
+        day:
+          type: integer
+      required:
+        - year
+        - month
+        - day
+      x-ada-no-vector: true
+    TimeInfo:
+      type: object
+      properties:
+        hour:
+          type: integer
+        minute:
+          type: integer
+      required:
+        - hour
+        - minute
+      x-ada-no-vector: true
+    DateTimeInfo:
+      type: object
+      properties:
+        date:
+          $ref: '#/components/schemas/DateInfo'
+        time:
+          $ref: '#/components/schemas/TimeInfo'
+      required:
+        - date
+        - time
+      x-ada-no-vector: true
+    TimeRange:
+      type: object
+      properties:
+        start:
+          $ref: '#/components/schemas/DateTimeInfo'
+        end:
+          $ref: '#/components/schemas/DateTimeInfo'
+      required:
+        - start
+        - end
+    Schedule:
+      type: object
+      description: Schedule information for the twincode
+      properties:
+        timeRanges:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimeRange'
+        timeZone:
+          type: string
+          description: Timezone for the schedule
+          example: "Europe/Paris"
+      required:
+        - timeRanges
+        - timeZone
+      x-ada-no-vector: true
+    Twincode:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Name of the twincode
+          example: "Réunion test"
+        description:
+          type: string
+          description: Description of the twincode
+        avatarId:
+          type: string
+          description: Avatar identifier
+        publicKey:
+          type: string
+          description: The twincode public key
+        audio:
+          type: boolean
+          description: Indicates if audio is enabled
+        video:
+          type: boolean
+          description: Indicates if video is enabled
+        transfer:
+          type: boolean
+          description: Indicates if transfer is enabled
+        group:
+          type: boolean
+          description: Indicates if group is enabled
+        conference:
+          type: boolean
+          description: Indicates if conference is enabled
+        schedule:
+          $ref: '#/components/schemas/Schedule'
+      required:
+        - name
+        - description
+        - avatarId
+        - audio
+        - video
+        - transfer
+        - group
+        - conference
+      x-ada-no-vector: true
+    ChangeInfo:
+      type: object
+      properties:
+        major:
+          type: array
+          items:
+            type: string
+        minor:
+          type: array
+          items:
+            type: string
+      required:
+        - major
+        - minor
+      x-ada-no-vector: true
+    TwinmeInfo:
+      type: object
+      properties:
+        version:
+          type: string
+          description: Version of the Twinme application
+          example: "33.3"
+        minSdk:
+          type: integer
+          description: Minimum SDK version required
+          example: 21
+        size:
+          type: integer
+          description: Size of the application in bytes
+          example: 23537568
+        sha256sum:
+          type: string
+          description: SHA-256 checksum of the application
+          example: "99e8663a3854980567748cd09bbc23a68a071b23f48e1bd56da38946376f7969"
+        images:
+          type: array
+          description: List of image URLs for dark mode
+          items:
+            type: string
+        images_dark:
+          type: array
+          items:
+            type: string
+        changes:
+          $ref: '#/components/schemas/ChangeInfo'
+      required:
+        - changes
+        - version
+        - images
+        - images_dark
+      x-ada-no-vector: true
