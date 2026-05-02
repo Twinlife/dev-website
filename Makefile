@@ -6,6 +6,8 @@ DIST_FILE=twinlife-$(VERSION).tar.gz
 
 MAKE_ARGS += -XTWINLIFE_BUILD=$(BUILD)
 
+TSC=tsc
+
 ALR?=alr --non-interactive
 OPENAPI=$(ALR) exec -- openapi-generator
 OPENAPI_OPTIONS=--additional-properties projectName=twinlife \
@@ -37,6 +39,9 @@ generate::
 
 generate-rest:
 	$(OPENAPI) generate --generator-name ada -i twincodes-api.yaml $(OPENAPI_OPTIONS)
+
+generate-js:
+	$(TSC) web/js/comments.ts
 
 lib-setup::
 

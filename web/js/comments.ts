@@ -1,3 +1,9 @@
+/**
+ * Comment support script.
+ * Copyright (C) Twinlife SA.
+ * Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+ * SPDX-License-Identifier: Apache-2.0
+ */
 class Comments {
     readonly c1: HTMLInputElement;
     readonly c2: HTMLInputElement;

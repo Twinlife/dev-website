@@ -1,3 +1,9 @@
+/**
+ * Comment support script.
+ * Copyright (C) Twinlife SA.
+ * Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+ * SPDX-License-Identifier: Apache-2.0
+ */
 var Comments = /** @class */ (function () {
     function Comments(formId) {
         this.formId = formId;

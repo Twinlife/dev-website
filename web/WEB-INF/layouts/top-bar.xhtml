@@ -1,0 +1,74 @@
+<!-- Header bar at top of the page layout
+  -  Copyright (C) 2011, 2012, 2018 Stephane Carrez
+  -  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+  -  SPDX-License-Identifier: Apache-2.0
+  -->
+<div id='awa-hdr' xmlns:c="http://java.sun.com/jstl/core">
+  <div id='tw-hdr-tool'>
+    <c:if test="#{user.isLogged}">
+      <input type='checkbox' id='awa-tool-nav' class='awa-side-menu' />
+      <label for='awa-tool-nav' class='awa-hamb-menu'><span class='awa-hamb-line'></span></label>
+      <nav id='tw-tool-nav' >
+        <ul class='awa-menu'>
+          <li id='awa-logout'>
+            <a href="#{contextPath}/auth/logout.html"
+               title="#{layoutMsg.layout_logout_title}">
+              #{layoutMsg.layout_logout_label}
+          </a></li>
+          <li class='awa-nav-separator'></li>
+          <li>
+            #{user.name}
+          </li>
+          <li class='awa-nav-separator'></li>
+          <li>
+            <a href="#{contextPath}/workspaces/main.html" title="#{layoutMsg.layout_workspace_title}">
+              #{layoutMsg.layout_workspace_label}
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </c:if>
+  </div>
+
+  <input type='checkbox' id='top-nav' class='awa-side-menu' />
+  <label for='top-nav' class='awa-hamb-menu'><span class='awa-hamb-line'></span></label>
+  <nav id='awa-top-nav' class="awa-side-nav">
+    <ul class='awa-menu'>
+      <li id="nav-blogs">
+        <a href="#{contextPath}/blogs/view.html" title="Home">
+          Home
+        </a>
+      </li>
+      <li id="nav-technology">
+        <a href="#{contextPath}/technology.html" title="Technology">
+          Technology
+        </a>
+      </li>
+      <li id="nav-security">
+        <a href="#{contextPath}/security.html" title="Security">
+          Security
+        </a>
+      </li>
+      <li id="nav-privacy">
+        <a href="#{contextPath}/privacy.html" title="Privacy">
+          Privacy
+        </a>
+      </li>
+      <li id="nav-developers">
+        <a href="#{contextPath}/developers.html" title="Developers">
+          Developers
+        </a>
+      </li>
+      <!-- <li>
+        <a href="#{contextPath}/documentation.html" title="Docs">
+          Docs
+        </a>
+      </li> -->
+      <li id="nav-about">
+        <a href="#{contextPath}/about.html" title="About">
+          About
+        </a>
+      </li>
+    </ul>
+  </nav>
+</div>

@@ -1,0 +1,56 @@
+<!-- Anonymous layout page (used by login, signup, registration, ...)
+  -  Copyright (C) 2011, 2012, 2015, 2018, 2022 Stephane Carrez
+  -  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+  -  SPDX-License-Identifier: Apache-2.0
+  -->
+<f:view contentType="text/html; charset=UTF-8"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:util="http://code.google.com/p/ada-asf/util"
+        xmlns:f="http://java.sun.com/jsf/core"><h:doctype rootElement="html"/>
+<html lang="en_US" xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <!-- DYNAMO-MERGE-START link=#{contextPath}/css/twinlife.css -->
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/grids/reset.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/_variables.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/asf.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/awa.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{jquery.uiCssPath}/jquery-ui.structure.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{jquery.uiCssPath}/jquery-ui.theme-dark.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{jquery.chosenCssPath}"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/markedit/jquery.markedit.css" />
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/comments.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/blogs.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/users.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/storages.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/wikis.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/jquery.tagedit.css"/>
+    <link media="screen" type="text/css" rel="stylesheet" href="#{contextPath}/css/main.css"/>
+    <!-- DYNAMO-MERGE-END -->
+    <link rel="icon" href="#{contextPath}/favicon.ico"/>
+    <ui:insert name="pageHeader"/>
+    <title>#{title}</title>
+</head>
+<body class="#{not empty pageStyle ? pageStyle : ''}#{not empty top_nav ? top_nav : ''}">
+<!-- Top header with user account -->
+<header id='tw-top'>
+  <ui:include src="top-bar.xhtml"/>
+</header>
+
+<main class="tw-main">
+    <ui:insert name="pageBody"/>
+</main>
+
+<ui:include src="footer.xhtml"/>
+
+<ui:insert name="pageScript"/>
+
+<!--DEV_START-->
+<ui:debug/>
+<!--DEV_END-->
+<util:flush/>
+</body>
+</html>
+</f:view>

@@ -1,0 +1,11 @@
+<!-- Wiki title with optional edit for administrators
+  -  Copyright (C) Twinlife SA.
+  -  Written by Stephane Carrez (Stephane.Carrez@gmail.com)
+  -  SPDX-License-Identifier: Apache-2.0
+  -->
+<h2 xmlns:h="http://java.sun.com/jsf/html">
+    #{title}
+    <h:panelGroup rendered="#{user.isLogged}">
+        <a href="#{contextPath}/wikis/edit/1/#{pageName}">Edit</a>
+    </h:panelGroup>
+</h2>
