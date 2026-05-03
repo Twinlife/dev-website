@@ -6,8 +6,6 @@
 <div id='awa-hdr' xmlns:c="http://java.sun.com/jstl/core">
   <div id='tw-hdr-tool'>
     <c:if test="#{user.isLogged}">
-      <input type='checkbox' id='awa-tool-nav' class='awa-side-menu' />
-      <label for='awa-tool-nav' class='awa-hamb-menu'><span class='awa-hamb-line'></span></label>
       <nav id='tw-tool-nav' >
         <ul class='awa-menu'>
           <li id='awa-logout'>
@@ -69,6 +67,18 @@
           About
         </a>
       </li>
+      <c:if test="#{user.isLogged}">
+        <li id="nav-workspace">
+          <a href="#{contextPath}/workspaces/main.html" title="#{layoutMsg.layout_workspace_title}">
+            #{layoutMsg.layout_workspace_label}
+          </a>
+        </li>
+        <li id='nav-logout'>
+          <a href="#{contextPath}/auth/logout.html"
+             title="#{layoutMsg.layout_logout_title}">
+            #{layoutMsg.layout_logout_label}
+        </a></li>
+      </c:if>
     </ul>
   </nav>
 </div>

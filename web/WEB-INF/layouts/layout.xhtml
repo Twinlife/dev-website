@@ -29,7 +29,7 @@
     <ui:insert name="pageHeader"/>
     <title><h:outputText value="#{title}"/></title>
 </head>
-<body class="">
+<body class="#{not empty pageStyle ? pageStyle : ''}">
 
 <!-- Top header with user account -->
 <header class='awa-hdr'>

@@ -2,7 +2,7 @@
 RDIR=`dirname $0`
 RDIR=`realpath $RDIR`
 RDIR=`realpath $RDIR`
-CDIR=/opt/config
+CDIR=/etc/twindev
 DDIR=/opt/data
 DIR=/opt/twindev
 
