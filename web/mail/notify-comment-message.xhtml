@@ -10,7 +10,7 @@
 <ui:decorate template="/WEB-INF/layouts/mail.xhtml">
     <ui:define name="subject">New comment on: #{post.title}</ui:define>
     <ui:define name="mailTo">
-      <mail:from address="#{initParam['app_mail_name']}">#{initParam['app_mail_from']}"</mail:from>
+      <mail:from address="#{initParam['app_mail_name']}">#{initParam['app_mail_from']}</mail:from>
       <mail:to address="#{initParam['app_notify_name']}">#{initParam['app_notify_name']}</mail:to>
     </ui:define>
     <ui:define name="mailTextBody">

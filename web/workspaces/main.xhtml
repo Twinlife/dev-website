@@ -28,6 +28,10 @@
               <ui:param name="page_link" value="/grid"/>
             </ui:include>
           </h:panelGroup>
+          <h:panelGroup rendered="#{auth:hasPermission('workspace-invite-user',1)}">
+          <h2>Membres</h2>
+          <ui:include src="/workspaces/views/workspace-nav.xhtml"/>
+          </h:panelGroup>
         </c:when>
         <c:otherwise>
           #{layoutMsg.layout_error_page_denied}

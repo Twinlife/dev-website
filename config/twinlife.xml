@@ -8,20 +8,8 @@
         <message-bundle var='twinlifeMsg'>twinlife</message-bundle>
     </application>
 
-  <!--  When a user is created, create the blog object.  -->
-  <on-event name="user-create" queue="job-queue">
-    <action>#{blog.create_default}</action>
-    <property name="name">Blog</property>
-  </on-event>
-
-  <!--  When a user is created, send him a welcome message.  -->
-  <on-event name="user-create">
-    <action>#{userMail.send}</action>
-    <property name="template">/mail/welcome-message.xhtml</property>
-  </on-event>
-
   <!--  When a user is created and has accepted the invitation, add a permission to the wiki.  -->
-  <on-event name="user-create">
+  <on-event name="accept-invitation">
     <action>#{permission.create}</action>
     <property name="entity_type">awa_wiki_space</property>
     <property name="entity_id">1</property>
@@ -30,7 +18,7 @@
   </on-event>
 
   <!--  When a user is created and has accepted the invitation, add a permission to the blog.  -->
-  <on-event name="user-create">
+  <on-event name="accept-invitation">
     <action>#{permission.create}</action>
     <property name="entity_type">awa_blog</property>
     <property name="entity_id">1</property>
@@ -39,7 +27,7 @@
   </on-event>
 
   <!--  When a user is created and has accepted the invitation, add a permission for the storage space.  -->
-  <on-event name="user-create">
+  <on-event name="accept-invitation">
     <action>#{permission.create}</action>
     <property name="entity_type">awa_workspace</property>
     <property name="entity_id">1</property>
@@ -48,7 +36,7 @@
   </on-event>
 
   <!--  When a user is created and has accepted the invitation, give him the right to manage other users.  -->
-  <on-event name="user-create">
+  <on-event name="accept-invitation">
     <action>#{permission.create}</action>
     <property name="entity_type">awa_workspace</property>
     <property name="entity_id">1</property>
@@ -61,6 +49,37 @@
     <action>#{userMail.send}</action>
     <property name="template">/mail/blog-post-publish-email.html</property>
   </on-event>
+
+  <!-- OpenID Gitea -->
+  <context-param>
+    <param-name>auth.url.gitea</param-name>
+    <param-value>https://gogs.skyrock.net/login/oauth/authorize</param-value>
+    <description>Gitea OAuth2 authorization endpoint</description>
+  </context-param>
+
+  <context-param>
+    <param-name>auth.provider.gitea</param-name>
+    <param-value>yahoo</param-value>
+    <description>Auth provider to use for Gitea</description>
+  </context-param>
+
+  <context-param>
+    <param-name>gitea.request_url</param-name>
+    <param-value>https://gogs.skyrock.net/login/oauth/access_token</param-value>
+    <description>Gitea OAuth2 token endpoint</description>
+  </context-param>
+
+  <context-param>
+    <param-name>gitea.scope</param-name>
+    <param-value>openid email profile</param-value>
+    <description>Gitea OAuth2 scope (use 'openid' for OIDC, plus optional scopes like 'email' or 'profile')</description>
+  </context-param>
+
+  <context-param>
+    <param-name>gitea.issuer</param-name>
+    <param-value>https://gogs.skyrock.net</param-value>
+    <description>Gitea issuer (base URL of your Gitea instance)</description>
+  </context-param>
 
   <managed-bean>
     <description>Bean used to create a new permission for the current user.</description>
@@ -151,10 +170,10 @@
     </navigation-case>
   </navigation-rule>
 
-    <servlet-mapping>
-      <servlet-name>measures</servlet-name>
-      <url-pattern>/statistics.xml</url-pattern>
-    </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>measures</servlet-name>
+    <url-pattern>/statistics.xml</url-pattern>
+  </servlet-mapping>
 
   <filter-mapping>
     <filter-name>service</filter-name>

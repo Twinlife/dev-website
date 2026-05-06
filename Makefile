@@ -1,5 +1,5 @@
 NAME=twinlife
-VERSION=0.5.0
+VERSION=0.6.0
 BUILD=debug
 DIST_DIR=twinlife-$(VERSION)
 DIST_FILE=twinlife-$(VERSION).tar.gz

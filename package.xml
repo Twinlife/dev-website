@@ -7,7 +7,6 @@
          <include name="bin/twindev"/>
          <include name="bin/akt"/>
          <include name="config/*.xml"/>
-         <include name="twinlife*.properties"/>
      </install>
      <install mode='copy' dir="bin">
        <fileset dir="scripts">
@@ -116,12 +115,14 @@
        <command>pngcrush -s #{src} #{dst}</command>
        <fileset dir="web">
          <include name="**/*.png"/>
+         <exclude name="images/about/*.png"/>
        </fileset>
      </install>
      <install mode='copy-exec' dir='web' >
        <command output="${dst}">jpegtran -copy none -optimize -perfect #{src}</command>
        <fileset dir="web">
          <include name="**/*.jpg"/>
+         <exclude name="images/about/*.jpg"/>
        </fileset>
      </install>
   </dist>
