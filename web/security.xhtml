@@ -5,6 +5,13 @@
     <ui:param name="title" value="Security" />
     <ui:param name="pageStyle" value="page-security" />
 
+    <ui:define name="pageHeader">
+      <ui:include src="/WEB-INF/meta-page.xhtml">
+         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/security.html"/>
+          <ui:param name="pageDescription" value="Discover Twinlife's robust security measures for twinme, twinme+, and Skred. Learn about end-to-end encryption, Twincodes, compliance with IETF standards, secure account creation, device security, and server/transport security."/>
+      </ui:include>
+    </ui:define>
+
     <!-- Main page body -->
     <ui:define name="pageBody">
         <f:metadata>

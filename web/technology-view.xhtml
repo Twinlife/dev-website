@@ -5,6 +5,13 @@
     <ui:param name="title" value="#{wikiView.title}" />
     <ui:param name="pageStyle" value="page-technology" />
 
+    <ui:define name="pageHeader">
+      <ui:include src="/WEB-INF/meta-page.xhtml">
+          <ui:param name="pageUrl" value="#{initParam['app_url_base']}/technology/#{wikiView.name}"/>
+          <ui:param name="pageDescription" value="#{wikiView.title}"/>
+      </ui:include>
+    </ui:define>
+
     <!-- Main page body -->
     <ui:define name="pageBody">
         <f:metadata>

@@ -5,6 +5,13 @@
     <ui:param name="title" value="Security" />
     <ui:param name="pageStyle" value="page-about" />
 
+    <ui:define name="pageHeader">
+      <ui:include src="/WEB-INF/meta-page.xhtml">
+         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/about.html"/>
+          <ui:param name="pageDescription" value="Meet the team behind Twinlife's applications: twinme, twinme+, and Skred. Discover the people driving innovation, from leadership to development and design."/>
+      </ui:include>
+    </ui:define>
+
     <!-- Main page body -->
     <ui:define name="pageBody">
         <f:metadata>

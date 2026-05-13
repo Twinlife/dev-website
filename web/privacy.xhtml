@@ -5,6 +5,13 @@
     <ui:param name="title" value="Privacy" />
     <ui:param name="pageStyle" value="page-privacy" />
 
+    <ui:define name="pageHeader">
+      <ui:include src="/WEB-INF/meta-page.xhtml">
+         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/privacy.html"/>
+          <ui:param name="pageDescription" value="Learn about Twinlife's privacy-by-design approach for twinme, twinme+, and Skred. No personal data required, no centralized storage, and peer-to-peer communication ensure your conversations stay private and under your control."/>
+      </ui:include>
+    </ui:define>
+
     <!-- Main page body -->
     <ui:define name="pageBody">
         <f:metadata>

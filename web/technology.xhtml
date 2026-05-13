@@ -5,6 +5,13 @@
     <ui:param name="title" value="Technology" />
     <ui:param name="pageStyle" value="page-technology" />
 
+    <ui:define name="pageHeader">
+      <ui:include src="/WEB-INF/meta-page.xhtml">
+         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/technology.html"/>
+          <ui:param name="pageDescription" value="Explore the technology stack powering Twinlife's applications, including twinme, twinme+, and Skred. Discover the tools and frameworks behind our innovative solutions."/>
+      </ui:include>
+    </ui:define>
+
     <!-- Main page body -->
     <ui:define name="pageBody">
         <ui:include src="/WEB-INF/applications.xhtml">
