@@ -9,7 +9,7 @@ if test -f $1; then
   if test -d $name; then
       chown -R twindev:twindev $name
       service twindev stop
-      rm /opt/twindev /opt/twindev/images/about
+      rm /opt/twindev /opt/twindev/web/images/about
       ln -s /opt/$name twindev
       ln -s $DDIR/storage /opt/$name/storage
       ln -s $DDIR/upload /opt/$name/upload
