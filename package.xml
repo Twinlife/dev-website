@@ -69,6 +69,7 @@
           <include name="**/*.ttf"/>
           <include name="**/*.woff2"/>
           <include name="**/*.svg"/>
+	  <include name="robots.txt"/>
           <exclude name="preview/**"/>
           <exclude name="WEB-INF/layouts/**"/>
        </fileset>

@@ -1,0 +1,4 @@
+User-agent: *
+Sitemap: https://dev.twin.life/sitemap.xml
+Allow: /
+
