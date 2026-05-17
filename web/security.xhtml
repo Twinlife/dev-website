@@ -14,9 +14,6 @@
 
     <!-- Main page body -->
     <ui:define name="pageBody">
-        <f:metadata>
-            <f:viewAction action="#{wikiPrivacy.load}" />
-        </f:metadata>
         <ui:include src="/WEB-INF/applications.xhtml">
             <ui:param name="title" value="Security of our applications"/>
         </ui:include>
@@ -25,51 +22,57 @@
             <section>
                 <h2>End-to-End Encryption </h2>
                 <div class="wiki-text">
-
-                    Overview of how all communications (messages, calls) are encrypted.
-                    Use of WebRTC, SRTP, and DTLS for real-time media.
-                    Emphasis on no server access to content.
+<p>
+    Our applications protect your privacy and freedom by sending messages and
+    photos directly between devices, by using WebRTC data channel connection.
+    Audio and video calls are also made with a WebRTC connection and there is
+    no media server in between.
+    Communications between devices are therefore made by using direct connections, fully
+    encrypted by using SRTP and DTLS.
+</p>
                 </div>
             </section>
 
             <section>
-                <h2>Twincodes: Secure Relationships</h2>
+                <h2>Secure relations with twincodes</h2>
                 <div class="wiki-text">
+<p>
+    Our Twincode technology allows us to set up various kinds of relations
+    without knowing private information about any party.  These relations are
+    also signed by an Ed25519 private key, ensuring authenticity, integrity,
+    and tamper-proof communication.
+</p>
+<p>
+    Furthermore, when a WebRTC connection
+    must be established, the signaling information produced by WebRTC is
+    encrypted by using AEAD with a relation specific secret.  The signaling
+    server only sees encrypted signaling information, thus hiding and protecting
+    how the WebRTC connection is set up.  The signaling packets contains certificates,
+    media stream codec information, IP addresses, ports and protocols to allow
+    WebRTC to set up the direct peer-to-peer communication.  These sensitive
+    meta information are therefore not visible pour our server: only the target
+    device can decrypt them.
+</p>
+<p>
+    The secrets used to encrypt the WebRTC signaling information are changed
+    periodically by generating new secrets, and they are exchanged by the
+    devices within the data channel of WebRTC.
+</p>
 
-                    How twincodes establish and authenticate relationships.
-                    ECDSA signatures for data integrity and origin authentication.
-                    Protection against server compromise or forgery.
-
-                    SDP encrypted and signaling server cannot inspect WebRTC signaling.
-                </div>
-            </section>
-
-
-            <section>
-                <h2>Compliance with Standards</h2>
-                <div class="wiki-text">
-
-                    IETF standards: UDP, RTP, ICE, STUN, TURN, SDP, SRTP, DTLS.
-                    Use of ChaCha20-Poly1305 and AES-GCM cipher suites.
-                    Interoperability with WebRTC ecosystem.
-                </div>
-            </section>
-
-            <section>
-                <h2>Secure Account Creation</h2>
-                <div class="wiki-text">
-                    No personal information required (no phone/email).
-                    UUID-based accounts and cryptographically secure authentication.
-                    Salted challenge-response mechanism for passwords.
                 </div>
             </section>
 
             <section>
                 <h2>Device Security</h2>
                 <div class="wiki-text">
-                    Secure key/value store for credentials (iOS Keychain, Android Keystore).
-                    Encrypted local database (SQLCipher with AES-256).
-                    Protection against physical device access.
+<p>
+    To store relations, private keys, secrets, messages our applications are using an SQLCipher
+    database.  The database is therefore encrypted by using an AES-256 encryption key which is
+    stored either in the iOS keychain or in the Android keystore.
+</p>
+<p>
+    Our applications have been audited by Quarkslab
+</p>
                 </div>
 
             </section>
@@ -84,37 +87,6 @@
                 </div>
 
             </section>
-
-            <section>
-                <h2>Push Notification Security</h2>
-                <div class="wiki-text">
-
-
-                    Encrypted push tokens to prevent spoofing.
-                    Use of Apple/Google Push services with AES-256-CBC encryption.
-                    Authentication of notification content.
-                </div>
-            </section>
-
-
-            <section>
-
-                <h2>Implementation</h2>
-                <div class="wiki-text">
-
-                <h3>Secure Storage and Serialization</h3>
-                    SQLCipher for encrypted local databases.
-                    Avro for secure serialization of compound objects.
-                    Platform-specific secure storage (iOS Keychain, Android Keystore).
-
-                    <h3>Cryptographic Foundations</h3>
-
-                    ECDSA for signatures and key exchange.
-                    AEAD (AES-256-GCM) for authenticated encryption.
-                    PBKDF2 and HMAC for key derivation and integrity.
-                </div>
-            </section>
-
 
         </div>
     </ui:define>
