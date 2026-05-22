@@ -9,6 +9,11 @@
   border-color: #222;
   height: 3em;
 }
+#awa-powered {
+    float: right;
+    font-size: 0.8em;
+    padding-right: 1em;
+}
 .tw-quote {
   float: left;
   width: 100%;
@@ -543,5 +548,8 @@ article .awa-comment-list {
   .twinlife-applications ul, .twinlife-applications h2 {
       width: 375px;
       font-size: 0.5em;
+  }
+  #awa-powered {
+      display: none;
   }
 }
