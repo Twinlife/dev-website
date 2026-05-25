@@ -200,6 +200,16 @@ section h2 {
   width: 100%;
   text-align: center;
 }
+.twinlife-history h2 {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.twinlife-history .twinlife-profile {
+    margin-left: auto;
+    margin-right: auto;
+    float: none;
+}
 .col-sm-12 .page-about h2 {
   text-align: center;
   padding-top: 1em;
@@ -284,6 +294,19 @@ dl.awa-required input.tw-code {
 article .awa-comment-list {
     padding-left: 5px;
     padding-right: 5px;
+}
+/* Center Gitea login */
+ul.openid-login {
+    margin: auto;
+    width: 64px;
+    float: none;
+}
+ul.openid-login li {
+    margin-left: 0;
+}
+.openid-gitea {
+    width: 64px;
+    margin-left: 0;
 }
 /**
  * Dark mode support
