@@ -1,19 +1,19 @@
 name = "twinlife"
-version = "0.5.0"
+version = "0.11.0"
 description = "twinlife"
 authors = ["Stephane.Carrez@twin.life"]
 project-files = ["twinlife.gpr"]
 licenses = "Apache-2.0"
 
 [[depends-on]]
-utilada = "^2.7.0"
-utilada_curl = "^2.7.0"
+utilada = "^2.8.2"
+utilada_curl = "^2.8.2"
 ado = "^2.4.0"
 ado_sqlite = "^2.4.0"
 ado_mysql = "^2.4.0"
 ado_postgresql = " ^2.4.0"
 ado_all = "^2.4.0"
-awa = "^2.5.0"
+awa = "^2.6.0"
 servletada_aws = "^1.7.0"
 
 [gpr-externals]
