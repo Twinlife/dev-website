@@ -2,12 +2,14 @@
     xmlns:f="http://java.sun.com/jsf/core" xmlns:c="http://java.sun.com/jstl/core"
     xmlns:u="http://code.google.com/p/ada-asf/util" xmlns:awa="http://code.google.com/p/ada-awa/jsf"
     xmlns:h="http://java.sun.com/jsf/html">
-    <ui:param name="title" value="Security" />
+    <ui:param name="title" value="The team behind Twinlife's applications" />
     <ui:param name="pageStyle" value="page-about" />
 
     <ui:define name="pageHeader">
       <ui:include src="/WEB-INF/meta-page.xhtml">
-         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/about.html"/>
+          <ui:param name="pageAuthor" value="Twinlife"/>
+          <ui:param name="pageDate" value="2026-06-08T10:03:26Z"/>
+          <ui:param name="pageUrl" value="#{initParam['app_url_base']}/about.html"/>
           <ui:param name="pageDescription" value="Meet the team behind Twinlife's applications: twinme, twinme+, and Skred. Discover the people driving innovation, from leadership to development and design."/>
       </ui:include>
     </ui:define>
@@ -25,43 +27,43 @@
             <section>
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/pierre.jpg"/>
+                    <img width="192" alt="Pierre Bellanger" src="#{contextPath}/images/about/pierre.jpg"/>
                 </div>
                 <div class="profile-name">
                     Pierre Bellanger
                 </div>
                 <div class="profile-role">
-                    CEO
+                    Founder
                 </div>
             </div>
 
-            <div class="col-sm-4 twinlife-profile">
+                <div class="col-sm-4 twinlife-profile">
+                    <div class="profile-image">
+                        <img width="192" alt="Jerome Aguesse" src="#{contextPath}/images/about/jerome.jpg"/>
+                    </div>
+                    <div class="profile-name">
+                        Jerome Aguesse
+                    </div>
+                    <div class="profile-role">
+                        CEO
+                    </div>
+                </div>
+
+                <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/michel.jpg"/>
+                    <img width="192" alt="Michel Gien" src="#{contextPath}/images/about/michel.jpg"/>
                 </div>
                 <div class="profile-name">
                     Michel Gien
                 </div>
                 <div class="profile-role">
-                    Founder &amp; Director
+                    Co-Founder
                 </div>
             </div>
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/jerome.jpg"/>
-                </div>
-                <div class="profile-name">
-                    Jerome Aguesse
-                </div>
-                <div class="profile-role">
-                    Director
-                </div>
-            </div>
-
-            <div class="col-sm-4 twinlife-profile">
-                <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/stephane.jpg"/>
+                    <img width="192" alt="Stephane Carrez" src="#{contextPath}/images/about/stephane.jpg"/>
                 </div>
                 <div class="profile-name">
                     Stephane Carrez
@@ -73,7 +75,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/maxime.jpg"/>
+                    <img width="192" alt="Maxime Decaix" src="#{contextPath}/images/about/maxime.jpg"/>
                 </div>
                 <div class="profile-name">
                     Maxime Decaix
@@ -85,7 +87,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/fred.jpg"/>
+                    <img width="192" alt="Fred Tourrou" src="#{contextPath}/images/about/fred.jpg"/>
                 </div>
                 <div class="profile-name">
                     Fred Tourrou
@@ -97,7 +99,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/fabrice.jpg"/>
+                    <img width="192" alt="Fabrice Trescartes" src="#{contextPath}/images/about/fabrice.jpg"/>
                 </div>
                 <div class="profile-name">
                     Fabrice Trescartes
@@ -108,7 +110,7 @@
             </div>
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/romain.jpg"/>
+                    <img width="192" alt="Romain Kolb" src="#{contextPath}/images/about/romain.jpg"/>
                 </div>
                 <div class="profile-name">
                     Romain Kolb
@@ -120,7 +122,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/patrice.jpg"/>
+                    <img width="192" alt="Patrice Damezin" src="#{contextPath}/images/about/patrice.jpg"/>
                 </div>
                 <div class="profile-name">
                     Patrice Damezin
@@ -132,7 +134,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/florian.jpg"/>
+                    <img width="192" alt="Florian Znamiec" src="#{contextPath}/images/about/florian.jpg"/>
                 </div>
                 <div class="profile-name">
                     Florian Znamiec
@@ -144,7 +146,7 @@
 
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/laurent.jpg"/>
+                    <img width="192" alt="Laurent Latil" src="#{contextPath}/images/about/laurent.jpg"/>
                 </div>
                 <div class="profile-name">
                     Laurent Latil
@@ -161,13 +163,13 @@
             <h2>And our story would not have been possible without our valueable past contributors</h2>
             <div class="col-sm-4 twinlife-profile">
                 <div class="profile-image">
-                    <img width="192" src="#{contextPath}/images/about/christian.jpg"/>
+                    <img width="192" alt="Christian Jacquemot" src="#{contextPath}/images/about/christian.jpg"/>
                 </div>
                 <div class="profile-name">
                     Christian Jacquemot
                 </div>
                 <div class="profile-role">
-                    Founder &amp; CTO
+                    Founder &amp;amp; CTO
                 </div>
             </div>
         </div>

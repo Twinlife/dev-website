@@ -7,7 +7,9 @@
 
     <ui:define name="pageHeader">
       <ui:include src="/WEB-INF/meta-page.xhtml">
-         <ui:param name="pageUrl" value="#{initParam['app_url_base']}/privacy.html"/>
+          <ui:param name="pageAuthor" value="Twinlife"/>
+          <ui:param name="pageDate" value="#{wikiPrivacy.date}"/>
+          <ui:param name="pageUrl" value="#{initParam['app_url_base']}/privacy.html"/>
           <ui:param name="pageDescription" value="Learn about Twinlife's privacy-by-design approach for twinme, twinme+, and Skred. No personal data required, no centralized storage, and peer-to-peer communication ensure your conversations stay private and under your control."/>
       </ui:include>
     </ui:define>
@@ -23,9 +25,7 @@
         <div class='col-sm-12'>
             <div class="tw-quote">
                 <blockquote cite="https://pierrebellanger.com/skred-pierre_bellanger/">
-                Our slogan could be: 'Don’t trust us.' If tomorrow a data-hungry actor
-                bought Skred, they could do nothing with it: no messages pass through us,
-                and we have no identifiers for our users other than their pseudonyms.
+Mainstream messengers don't allow truly private conversations—the precondition for free speech. Skred, with its peer-to-peer architecture—no central server ever stores or routes your messages—and its popular success, is the choice of freedom. Around the world, users are realizing that leaky messengers are a risk they can't afford to take. With 21 million accounts and a new one every 15 seconds, Skred is the world's most widely used peer-to-peer messenger.
                 </blockquote>
                 <div class="tw-quote-author">Pierre Bellanger</div>
             </div>

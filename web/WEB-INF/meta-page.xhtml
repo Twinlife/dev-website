@@ -1,12 +1,13 @@
 <ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
                 xmlns:util="http://code.google.com/p/ada-asf/util">
-    <meta name="author" content="#{wikiView.author}"/>
+    <meta name="author" content="#{pageAuthor}"/>
     <meta name="description" content="#{util:escapeJavaScript(pageDescription)}"/>
     <link rel="canonical" href="#{pageUrl}"/>
     <meta property="og:locale" content="en_US" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="#{pageUrl}"/>
     <meta property="og:title" content="#{title}"/>
+    <meta property="og:description" content="#{util:escapeJavaScript(pageDescription)}"/>
     <meta property="og:site_name" content="#{initParam['app_name']}"/>
     <meta property="og:see_also" content="https://www.linkedin.com/company/skred/"/>
     <meta property="og:image" content="#{initParam['app_url_base']}/images/twinlife.png"/>
@@ -21,14 +22,14 @@
     <util:json jtype="WebPage">
         <util:json-prop name="name" value="#{title}"/>
         <util:json-prop name="url" value="#{pageUrl}"/>
-        <util:json-prop name="headline" value="#{wikiView.title}"/>
+        <util:json-prop name="headline" value="#{title}"/>
         <util:json-prop name="description" value="#{pageDescription}"/>
         <util:json-obj name="author" jtype="Person">
-            <util:json-prop name="name" value="#{wikiView.author}"/>
+            <util:json-prop name="name" value="#{pageAuthor}"/>
         </util:json-obj>
-        <util:json-prop name="dateCreated" value="#{wikiView.date}"/>
-        <util:json-prop name="dateModified" value="#{wikiView.date}"/>
-        <util:json-prop name="datePublished" value="#{wikiView.date}"/>
+        <util:json-prop name="dateCreated" value="#{pageDate}"/>
+        <util:json-prop name="dateModified" value="#{pageDate}"/>
+        <util:json-prop name="datePublished" value="#{pageDate}"/>
         <util:json-prop name="inLanguage" value="en"/>
         <util:json-obj name="mainEntityOfPage" jtype="WebPage" jid="#{pageUrl}"/>
         <ui:include src="/WEB-INF/ld+json-org.xhtml"/>

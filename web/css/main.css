@@ -165,7 +165,7 @@ section h2 {
   width: 100%;
   padding-top: 1em;
 }
-.twinlife-applications ul, .twinlife-applications h2 {
+.twinlife-applications ul, .twinlife-applications h1 {
   list-style: none;
   margin-left: auto;
   margin-right: auto;
@@ -568,7 +568,7 @@ ul.openid-login li {
   .twinlife-applications li {
       margin-left: 8px;
   }
-  .twinlife-applications ul, .twinlife-applications h2 {
+  .twinlife-applications ul, .twinlife-applications h1 {
       width: 375px;
       font-size: 0.5em;
   }
