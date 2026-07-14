@@ -43,8 +43,13 @@ input:autofill {
   padding-left: 0.5em;
   padding-right: 0.5em;
 }
-.blog-post .post-title h2 a {
+.blog-post .post-title h2 a, .blog-post .post-title h1 a {
     color: #414243;
+}
+.blog-post .post-title h1 a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.33em;
 }
 .blog-post .post-title {
     background: none;
@@ -358,6 +363,7 @@ ul.openid-login li {
   .awa-post-more a,
   .blog-post-add-comment a,
   .tagedit-list li.tagedit-listelement a,
+  .blog-post .post-title h1 a,
   .blog-post .post-title h2 a, div.post-text a, ul.tag-cloud a {
     color: #55A6FF;
   }

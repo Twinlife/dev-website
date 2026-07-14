@@ -27,9 +27,9 @@
           <h:inputText styleClass="tw-code" id="c5" required="false" value="#{postNewComment.c5}" />
           <h:inputText styleClass="tw-code" id="c6" required="false" value="#{postNewComment.c6}" />
         </dd>
-        </dl>
-          <dt>Comment</dt>
+      </dl>
           <dl class="awa-required#{util:hasMessage('text') ? ' awa-error' : ''}">
+            <dt><label>Comment</label></dt>
             <dd>
               <h:inputTextarea id='text' rows='10' required='false' value='#{postNewComment.message}' />
             </dd>
