@@ -105,6 +105,10 @@
          <to>url("jquery-ui-1.14.2/images/</to>
        </replace>
        <replace>
+         <from>url(images/</from>
+         <to>url(jquery-ui-1.14.2/images/</to>
+       </replace>
+       <replace>
          <from>url(../../images/</from>
          <to>url(../images/</to>
        </replace>
